@@ -1,0 +1,46 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  
+  &__main {
+    flex: 1;
+    margin-left: 280px; // 250px宽度 + 20px左边距 + 10px额外间距
+    transition: margin-left var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    width: calc(100% - 280px); // 确保宽度计算正确
+    
+    &--collapsed {
+      margin-left: 98px; // 68px宽度 + 20px左边距 + 10px额外间距
+      width: calc(100% - 98px); // 折叠时的宽度调整
+    }
+  }
+  
+  &__content {
+    flex: 1;
+    overflow: auto;
+    padding: var(--spacing-md);
+    
+    @media (min-width: 768px) {
+      padding: var(--spacing-lg);
+    }
+  }
+  
+  @media (max-width: 767px) {
+    flex-direction: column;
+    
+    &__main {
+      margin-left: 0;
+      margin-top: 0; // 不再需要顶部间距
+      margin-bottom: 60px; // 为底部导航预留空间
+      width: 100%; // 移动端时占满宽度
+      
+      &--collapsed {
+        margin-left: 0;
+        margin-bottom: 60px;
+        width: 100%;
+      }
+    }
+  }
+} 

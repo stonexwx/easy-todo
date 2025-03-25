@@ -1,0 +1,103 @@
+.motivational-quote {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-md);
+  box-shadow: 
+    var(--shadow-md),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      var(--shadow-lg),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  }
+  
+  &::before {
+    content: '"';
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-md);
+    font-size: 6rem;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.08;
+    background: linear-gradient(120deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(
+      circle at center,
+      rgba(103, 58, 183, 0.1) 0%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    border-radius: 50%;
+    z-index: 0;
+  }
+  
+  &__text {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-primary);
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+  }
+  
+  &__author {
+    position: relative;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    padding-top: var(--spacing-sm);
+    z-index: 1;
+    
+    &::before {
+      content: '— ';
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 2px;
+      background-color: rgba(103, 58, 183, 0.2);
+      border-radius: var(--radius-full);
+    }
+  }
+  
+  @media (max-width: 767px) {
+    padding: var(--spacing-md);
+    
+    &__text {
+      font-size: 1rem;
+    }
+  }
+} 

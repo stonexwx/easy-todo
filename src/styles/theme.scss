@@ -1,0 +1,71 @@
+// 主题颜色 - 活泼现代风格
+:root {
+  // 主色调
+  --color-primary: #673AB7;        // 紫色作为主色
+  --color-secondary: #9575CD;      // 浅紫色作为辅助色
+  --color-accent: #FF4081;         // 粉红色作为点缀
+  --color-warning: #FF5722;        // 橙红色作为警告色
+  
+  // 功能色
+  --color-important-urgent: #FF5252;       // 重要且紧急 - 红色
+  --color-important-not-urgent: #FFB74D;   // 重要不紧急 - 橙色
+  --color-not-important-urgent: #64B5F6;   // 不重要但紧急 - 蓝色
+  --color-not-important-not-urgent: #B0BEC5; // 不重要不紧急 - 灰色
+  
+  // 中性色
+  --color-background: #F5F5F5;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #2c3e50;
+  --color-border: #E0E0E0;
+  --color-divider: #EEEEEE;
+  
+  // 文字颜色
+  --color-text-primary: #424242;
+  --color-text-secondary: #757575;
+  --color-text-disabled: #BDBDBD;
+  
+  // 阴影
+  --shadow-sm: 0 2px 4px rgba(103, 58, 183, 0.05);
+  --shadow-md: 0 4px 8px rgba(103, 58, 183, 0.1);
+  --shadow-lg: 0 8px 16px rgba(103, 58, 183, 0.15);
+  
+  // 圆角
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  // 间距
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  
+  // 过渡
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // 响应式断点
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+// 深色模式支持（为未来扩展准备）
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #121212;
+    --color-surface: #1E1E1E;
+    --color-on-surface: #FFFFFF;
+    --color-border: #333333;
+    --color-divider: #424242;
+    
+    --color-text-primary: #E0E0E0;
+    --color-text-secondary: #9E9E9E;
+    --color-text-disabled: #616161;
+  }
+} 

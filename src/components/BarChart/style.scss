@@ -1,0 +1,66 @@
+.bar-chart {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md);
+  
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+    color: var(--color-text-primary);
+  }
+  
+  &__container {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .recharts-tooltip-wrapper {
+    .recharts-default-tooltip {
+      background-color: var(--color-surface) !important;
+      border: 1px solid var(--color-divider) !important;
+      border-radius: var(--radius-sm) !important;
+      box-shadow: var(--shadow-md) !important;
+      
+      .recharts-tooltip-label {
+        color: var(--color-text-primary) !important;
+      }
+      
+      .recharts-tooltip-item {
+        color: var(--color-text-primary) !important;
+      }
+    }
+  }
+  
+  .recharts-cartesian-axis-tick-value {
+    fill: var(--color-text-secondary);
+    font-size: 0.75rem;
+  }
+  
+  .recharts-cartesian-grid-horizontal line,
+  .recharts-cartesian-grid-vertical line {
+    stroke: var(--color-divider);
+    stroke-dasharray: 3 3;
+  }
+  
+  .recharts-cartesian-axis-line {
+    stroke: var(--color-divider);
+  }
+  
+  .recharts-label {
+    fill: var(--color-text-primary);
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  @media (max-width: 767px) {
+    padding: var(--spacing-sm);
+    
+    &__title {
+      font-size: 1rem;
+      margin-bottom: var(--spacing-sm);
+    }
+  }
+} 
