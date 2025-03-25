@@ -1,0 +1,183 @@
+.card {
+    position: relative;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    // 基础样式
+    background: var(--color-surface);
+    border: 1px solid var(--color-divider);
+
+    // 标题样式
+    &__title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--color-text-primary);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    // 内容区域样式
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    // 内边距变体
+    &--padding-none {
+        padding: 0;
+
+        .card__title {
+            padding: var(--spacing-md);
+            margin-bottom: 0;
+        }
+
+        .card__content {
+            padding: 0;
+        }
+    }
+
+    &--padding-sm {
+        padding: var(--spacing-sm);
+
+        .card__title {
+            padding: 0 var(--spacing-sm);
+        }
+
+        .card__content {
+            padding: 0 var(--spacing-sm);
+        }
+    }
+
+    &--padding-md {
+        padding: var(--spacing-md);
+
+        .card__title {
+            padding: 0 var(--spacing-md);
+        }
+
+        .card__content {
+            padding: 0 var(--spacing-md);
+        }
+    }
+
+    &--padding-lg {
+        padding: var(--spacing-lg);
+
+        .card__title {
+            padding: 0 var(--spacing-lg);
+        }
+
+        .card__content {
+            padding: 0 var(--spacing-lg);
+        }
+    }
+
+    // 变体样式
+    &--elevated {
+        background: var(--color-surface);
+        box-shadow: var(--shadow-md);
+        border: none;
+
+        &:not(.card--no-hover):hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+    }
+
+    &--bordered {
+        background: var(--color-surface);
+        border: 1px solid var(--color-divider);
+        box-shadow: none;
+
+        &:not(.card--no-hover):hover {
+            border-color: var(--color-primary);
+        }
+    }
+
+    &--glass {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(8px) saturate(150%);
+        -webkit-backdrop-filter: blur(8px) saturate(150%);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow:
+            var(--shadow-md),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+
+        &:not(.card--no-hover):hover {
+            box-shadow:
+                var(--shadow-lg),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        }
+    }
+
+    // 禁用悬停效果
+    &--no-hover {
+        transform: none !important;
+        box-shadow: inherit !important;
+    }
+
+    /* 微妙纹理 */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.02;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+        border-radius: var(--radius-md);
+        z-index: -1;
+    }
+
+    &__header {
+        padding: var(--spacing-md);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin: 0;
+            position: relative;
+            display: inline-block;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 40px;
+                height: 3px;
+                background-color: var(--color-primary);
+                border-radius: var(--radius-full);
+            }
+        }
+    }
+
+    &__footer {
+        padding: var(--spacing-md);
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        display: flex;
+        justify-content: flex-end;
+        gap: var(--spacing-sm);
+    }
+
+    /* 响应式 */
+    @media (max-width: 767px) {
+
+        &__header,
+        &__content,
+        &__footer {
+            padding: var(--spacing-sm);
+        }
+
+        &__header-title {
+            font-size: 1rem;
+        }
+    }
+}

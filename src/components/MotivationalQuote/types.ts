@@ -1,5 +1,5 @@
 export interface MotivationalQuoteProps {
-  quote: string;
+  text: string;
   author?: string;
   className?: string;
 } 

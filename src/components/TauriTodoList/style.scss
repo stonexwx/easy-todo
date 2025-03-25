@@ -1,0 +1,146 @@
+.tauri-todo-list {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__error {
+    background-color: #ffdddd;
+    color: #ff0000;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ff0000;
+  }
+
+  &__form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  &__input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  &__select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 16px;
+  }
+
+  &__button {
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    
+    &:hover {
+      background-color: #45a049;
+    }
+  }
+
+  &__loading, &__empty {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+  }
+
+  &__items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 12px;
+    
+    &-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    &--completed {
+      .tauri-todo-list__title {
+        text-decoration: line-through;
+        color: #888;
+      }
+    }
+
+    &--important-urgent {
+      border-left: 4px solid #ff4d4d;
+    }
+
+    &--important-not-urgent {
+      border-left: 4px solid #ffaa33;
+    }
+
+    &--not-important-urgent {
+      border-left: 4px solid #33aaff;
+    }
+
+    &--not-important-not-urgent {
+      border-left: 4px solid #aaaaaa;
+    }
+  }
+
+  &__checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  &__title {
+    flex: 1;
+    font-size: 16px;
+  }
+
+  &__priority {
+    font-size: 14px;
+    color: #666;
+    white-space: nowrap;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__priority-select {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+  }
+
+  &__delete-button {
+    padding: 6px 12px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    
+    &:hover {
+      background-color: #d32f2f;
+    }
+  }
+} 

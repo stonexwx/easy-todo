@@ -2,6 +2,7 @@ import { describe, test, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import BarChart from './index';
 import { DataPoint } from './types';
+import '@testing-library/jest-dom';
 
 describe('BarChart组件', () => {
   const mockData: DataPoint[] = [
@@ -12,22 +13,28 @@ describe('BarChart组件', () => {
   ];
 
   test('正确渲染图表', () => {
-    const { getByTestId } = render(<BarChart data={mockData} />);
+    const { container } = render(<BarChart data={mockData} />);
 
-    expect(getByTestId('bar-chart')).toBeInTheDocument();
+    // 检查是否渲染了图表容器
+    expect(container.querySelector('.bar-chart__container')).toBeInTheDocument();
+    expect(container.querySelector('.recharts-responsive-container')).toBeInTheDocument();
   });
 
   test('渲染标题（如果提供）', () => {
     const title = '每周任务完成情况';
-    const { getByTestId } = render(<BarChart data={mockData} title={title} />);
+    const { container } = render(<BarChart data={mockData} title={title} />);
 
-    expect(getByTestId('chart-title').textContent).toBe(title);
+    // 通过实际内容检查标题是否正确渲染
+    const titleElement = container.querySelector('.card__title');
+    expect(titleElement).toBeInTheDocument();
+    expect(titleElement?.textContent).toBe(title);
   });
 
   test('不渲染标题（如果未提供）', () => {
-    const { queryByTestId } = render(<BarChart data={mockData} />);
+    const { container } = render(<BarChart data={mockData} />);
 
-    expect(queryByTestId('chart-title')).toBeNull();
+    // 确认没有渲染标题元素
+    expect(container.querySelector('.card__title')).not.toBeInTheDocument();
   });
 
   test('应用自定义高度', () => {

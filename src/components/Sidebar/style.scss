@@ -76,6 +76,12 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
 
+  &:hover {
+    box-shadow: 
+      var(--shadow-lg),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  }
+
   &::before {
     content: '';
     position: absolute;

@@ -1,19 +1,26 @@
 import React from 'react';
+import Card from '../Card';
 import { MotivationalQuoteProps } from './types';
 import './style.scss';
 
-const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({ quote, author, className = '' }) => {
+const MotivationalQuote: React.FC<MotivationalQuoteProps> = ({ text, author, className = '' }) => {
   return (
-    <div className={`motivational-quote ${className}`} data-testid="motivational-quote">
-      <p className="motivational-quote__text" data-testid="quote-text">
-        {quote}
-      </p>
-      {author && (
-        <p className="motivational-quote__author" data-testid="quote-author">
-          {author}
-        </p>
-      )}
-    </div>
+    <Card
+      className={`motivational-quote ${className}`}
+      variant="glass"
+      padding="lg"
+      customStyle={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        height: '100%',
+      }}
+    >
+      <div className="motivational-quote__text">{text}</div>
+      <div className="motivational-quote__author">{author}</div>
+    </Card>
   );
 };
 

@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
   Label,
 } from 'recharts';
+import Card from '../Card';
 import { BarChartProps } from './types';
 import './style.scss';
 
@@ -28,52 +29,25 @@ const BarChart: React.FC<BarChartProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`bar-chart ${className}`} data-testid="bar-chart">
-      {title && (
-        <h3 className="bar-chart__title" data-testid="chart-title">
-          {title}
-        </h3>
-      )}
-
+    <Card title={title} className={`bar-chart ${className}`} variant="elevated">
       <div className="bar-chart__container" style={{ height }}>
         <ResponsiveContainer width="100%" height="100%">
-          <RechartsBarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 30 }}>
+          <RechartsBarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name">
-              {xAxisLabel && (
-                <Label value={xAxisLabel} position="bottom" style={{ textAnchor: 'middle' }} />
-              )}
+              {xAxisLabel && <Label value={xAxisLabel} position="bottom" />}
             </XAxis>
-            <YAxis>
-              {yAxisLabel && (
-                <Label
-                  value={yAxisLabel}
-                  angle={-90}
-                  position="left"
-                  style={{ textAnchor: 'middle' }}
-                />
-              )}
-            </YAxis>
+            <YAxis>{yAxisLabel && <Label value={yAxisLabel} angle={-90} position="left" />}</YAxis>
             <Tooltip />
-            <Bar
-              dataKey="value"
-              fill="var(--color-primary)"
-              isAnimationActive={true}
-              animationDuration={1000}
-            >
-              {data.map((entry, index) => (
-                <Bar
-                  key={`bar-${entry.name}`}
-                  dataKey="value"
-                  name={entry.name}
-                  fill={entry.color || defaultColors[index % defaultColors.length]}
-                />
+            {Object.keys(data[0] || {})
+              .filter(key => key !== 'name')
+              .map((key, index) => (
+                <Bar key={key} dataKey={key} fill={defaultColors[index % defaultColors.length]} />
               ))}
-            </Bar>
           </RechartsBarChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </Card>
   );
 };
 

@@ -1,0 +1,28 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
+  "identifier": "main-capability",
+  "description": "Capability for the main window",
+  "windows": ["main"],
+  "permissions": [
+    {
+      "identifier": "invoke:get_todos",
+      "description": "Allows retrieving all todo items."
+    },
+    {
+      "identifier": "invoke:create_todo",
+      "description": "Allows creating a new todo item."
+    },
+    {
+      "identifier": "invoke:toggle_todo",
+      "description": "Allows toggling a todo item's completion status."
+    },
+    {
+      "identifier": "invoke:update_priority",
+      "description": "Allows updating a todo item's priority."
+    },
+    {
+      "identifier": "invoke:delete_todo",
+      "description": "Allows deleting a todo item."
+    }
+  ]
+}

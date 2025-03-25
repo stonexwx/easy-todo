@@ -1,8 +1,8 @@
 export interface TaskCategory {
   id: string;
-  label: string;
+  type: 'important-urgent' | 'important-not-urgent' | 'not-important-urgent' | 'not-important-not-urgent';
+  name: string;
   count: number;
-  color?: string;
 }
 
 export interface TaskStatisticsProps {

@@ -34,20 +34,11 @@ const Sidebar: React.FC<SidebarProps> = ({
 
     updateActivePosition();
 
-    // 触发菜单项的hover效果，使整个侧边栏产生颜色衍射
-    const sidebar = document.querySelector('.sidebar');
-    if (sidebar) {
-      sidebar.classList.add('has-active-item');
-    }
-
     // 窗口大小变化时更新位置
     window.addEventListener('resize', updateActivePosition);
+
     return () => {
       window.removeEventListener('resize', updateActivePosition);
-
-      if (sidebar) {
-        sidebar.classList.remove('has-active-item');
-      }
     };
   }, [activeItemId]);
 

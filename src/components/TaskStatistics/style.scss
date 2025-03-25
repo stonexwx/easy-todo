@@ -1,26 +1,7 @@
 .task-statistics {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(8px) saturate(150%);
-  -webkit-backdrop-filter: blur(8px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: var(--radius-md);
-  box-shadow: 
-    var(--shadow-md),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-  padding: var(--spacing-md);
   display: flex;
   flex-direction: column;
   height: 100%;
-  position: relative;
-  overflow: hidden;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-      var(--shadow-lg),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.4);
-  }
   
   &__header {
     margin-bottom: var(--spacing-md);
@@ -69,8 +50,9 @@
   &__categories {
     display: flex;
     flex-direction: column;
-    flex: 1;
     gap: var(--spacing-xs);
+    flex: 1;
+      min-height: 0;
   }
   
   &__category {
@@ -136,9 +118,7 @@
     }
   }
   
-  @media (max-width: 767px) {
-    height: auto;
-    
+    @media (max-width: 767px) {
     &__categories {
       flex-direction: row;
       flex-wrap: wrap;

@@ -13,4 +13,14 @@ const server = setupServer();
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 afterAll(() => server.close());
-afterEach(() => server.resetHandlers()); 
+afterEach(() => server.resetHandlers());
+
+// 模拟ResizeObserver，因为jsdom环境中没有提供
+class MockResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+// 全局注册ResizeObserver
+window.ResizeObserver = MockResizeObserver; 
