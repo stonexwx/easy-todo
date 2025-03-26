@@ -22,8 +22,8 @@ jobs:
         working-directory: ./src-tauri
         run: cargo outdated
   
-  npm-check:
-    name: 检查NPM依赖
+  yarn-check:
+    name: 检查Yarn依赖
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,9 +32,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'yarn'
       
-      - name: 安装npm-check-updates
-        run: npm install -g npm-check-updates
+      - name: 安装Yarn
+        run: npm install -g yarn
       
-      - name: 检查NPM依赖更新
-        run: ncu 
+      - name: 安装Yarn依赖
+        run: yarn install
+      
+      - name: 检查Yarn依赖更新
+        run: yarn outdated 

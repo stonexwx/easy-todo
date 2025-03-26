@@ -16,12 +16,13 @@
 - Node.js (v18+)
 - Rust (1.71+)
 - Tauri CLI
+- Yarn
 
 ### 安装依赖
 
 ```bash
 # 安装前端依赖
-npm install
+yarn install
 
 # 安装Tauri CLI
 cargo install tauri-cli
@@ -31,14 +32,14 @@ cargo install tauri-cli
 
 ```bash
 # 启动开发服务器
-npm run dev
+yarn dev
 ```
 
 ### 构建
 
 ```bash
 # 构建应用
-npm run build
+yarn build
 ```
 
 ## 自动化测试
@@ -57,7 +58,7 @@ npm run build
    - 测试前端和后端的集成
 
 3. **依赖版本检查** - 定期检查依赖更新
-   - 每周自动检查Rust和NPM依赖的更新
+   - 每周自动检查Rust和Yarn依赖的更新
    - 可以手动触发检查
 
 4. **发布应用** - 自动化发布流程
