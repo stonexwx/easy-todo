@@ -9,14 +9,6 @@
     "devUrl": "http://localhost:5173",
     "frontendDist": "../dist"
   },
-  "tauri": {
-    "updater": {
-      "active": true,
-      "endpoint": "https://api.github.com/repos/easy-todo/easy-todo/releases/latest",
-      "pubkey": "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqjvASoyvioaThfuo4Bht7BHqb4DxkxXGSUxMUirOpps8skZYOCSstsEsKLFXbIaN8PUVTGO8elXX+U0zu392GCd5MZJ+UeDHSJHMu09j/7zwiINg7ZAHFAPgto5ZodVUcOkuL/k5e+0uBKewLJVpQNo8ixxXdwX9dxjDvwKkh70h7tOUw4Nd6cgHC3xbcvecKku00fdFcYfSOedX4Sw/6ojNoATTshCcj9x1+KpvXyviHXx2hhLhqEo813wdcU9fXCKR33vlCyGCP4wL815KjRDC6BSgvB6kps1d4SE/NSHz3OvSheOYYDEvp/NzOjun4RfJjZU7wNYKcQhMmvX7yQIDAQAB-----END PUBLIC KEY-----",
-      "dialog": true
-    }
-  },
   "app": {
     "security": {
       "csp": "default-src 'self'; connect-src 'self' https://api.deepseek.com https://gitlab.com; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:"
@@ -61,6 +53,14 @@
       "certificateThumbprint": null,
       "digestAlgorithm": "sha256",
       "timestampUrl": ""
+    },
+    "createUpdaterArtifacts": "v1Compatible"
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqjvASoyvioaThfuo4Bht7BHqb4DxkxXGSUxMUirOpps8skZYOCSstsEsKLFXbIaN8PUVTGO8elXX+U0zu392GCd5MZJ+UeDHSJHMu09j/7zwiINg7ZAHFAPgto5ZodVUcOkuL/k5e+0uBKewLJVpQNo8ixxXdwX9dxjDvwKkh70h7tOUw4Nd6cgHC3xbcvecKku00fdFcYfSOedX4Sw/6ojNoATTshCcj9x1+KpvXyviHXx2hhLhqEo813wdcU9fXCKR33vlCyGCP4wL815KjRDC6BSgvB6kps1d4SE/NSHz3OvSheOYYDEvp/NzOjun4RfJjZU7wNYKcQhMmvX7yQIDAQAB-----END PUBLIC KEY-----",
+      "endpoints": ["https://github.com/easy-todo/easy-todo/releases/latest/download/latest.json"],
+      "dialog": true
     }
   }
 }

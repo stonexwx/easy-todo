@@ -23,6 +23,7 @@ serde = { version = "1.0", features = ["derive"] }
 log = "0.4"
 tauri = { version = "2.0.0-rc.17", features = [] }
 tauri-plugin-log = "2.0.0-rc"
+tauri-plugin-updater = { version = "2.0.0-rc", optional = true }
 uuid = { version = "1.4", features = ["v4", "serde"] }
 rusqlite = "0.34.0"
 env_logger = "0.11.7"
@@ -33,6 +34,15 @@ anyhow = "1.0.97"
 reqwest = { version = "0.12", features = ["blocking", "json"] }
 chrono = "0.4"
 dyn-clone = "1.0.19"
+
+[features]
+# by default Tauri runs in production mode
+# when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL
+default = ["custom-protocol", "updater"]
+# this feature is used for production builds where `devPath` points to the filesystem
+# DO NOT remove this
+custom-protocol = ["tauri/custom-protocol"]
+updater = ["dep:tauri-plugin-updater"]
 
 [dev-dependencies]
 tempfile = "3.8.0"
