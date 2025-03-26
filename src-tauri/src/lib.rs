@@ -1,49 +1,43 @@
-mod todo;
-mod db;
-mod error;
-mod logging;
+pub mod todo;
+pub mod db;
+pub mod error;
+pub mod logging;
+pub mod gitlab;
+pub mod ai;
+pub mod menu;
 
 use std::sync::Arc;
-use db::Database;
 use tauri::Manager;
-use log::{info, error};
+use log::info;
+use tauri::{App, Wry};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
-pub fn run() {
-  // 初始化日志系统
-  logging::init(
-    logging::LogLevel::Debug,
-    cfg!(debug_assertions), // 在调试模式下启用文件日志
-    Some("./easy-todo.log")
-  );
+pub fn run(app: &mut App<Wry>) -> tauri::Result<()> {
+  // 获取应用程序数据目录
+  let app_data_dir = app.path().app_data_dir()
+    .expect("无法获取应用数据目录");
 
-  info!("应用程序启动");
+  // 确保目录存在
+  if !app_data_dir.exists() {
+    std::fs::create_dir_all(&app_data_dir)
+      .expect("无法创建应用数据目录");
+  }
 
-  tauri::Builder::default()
-    .setup(|app| {
-      info!("初始化应用程序...");
-      // 初始化数据库
-      match Database::new(&app.handle()) {
-        Ok(db) => {
-          info!("数据库初始化成功");
-          app.manage(Arc::new(db));
-          Ok(())
-        },
-        Err(e) => {
-          error!("数据库初始化失败: {}", e);
-          Err(Box::new(e))
-        }
-      }
-    })
-    .invoke_handler(tauri::generate_handler![
-      todo::create_todo,
-      todo::get_todos,
-      todo::toggle_todo,
-      todo::update_priority,
-      todo::delete_todo,
-    ])
-    .run(tauri::generate_context!())
-    .expect("error while running tauri application");
-    
-  info!("应用程序关闭");
+  // 初始化日志
+  let log_path = app_data_dir.join("easy-todo.log");
+  match logging::init_logger(log_path) {
+    Ok(_) => info!("日志系统初始化成功"),
+    Err(e) => eprintln!("日志系统初始化失败: {:?}", e),
+  }
+
+  // 初始化数据库
+  let db_path = app_data_dir.join("easy-todo.db");
+  let db = db::Database::new(db_path)
+    .expect("数据库初始化失败");
+
+  // 将数据库句柄保存到应用状态
+  app.manage(Arc::new(db));
+
+  info!("应用程序初始化成功");
+  Ok(())
 }

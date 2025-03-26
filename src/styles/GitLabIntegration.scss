@@ -1,0 +1,248 @@
+.page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.alert {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  
+  &.alert-error {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+    border-left: 4px solid #f44336;
+  }
+  
+  &.alert-success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+    border-left: 4px solid #4caf50;
+  }
+}
+
+.gitlab-config-card,
+.gitlab-issues-card {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    
+    &:focus {
+      outline: none;
+      border-color: #4299e1;
+    }
+  }
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  
+  &:hover {
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  &.btn-primary {
+    background-color: #4299e1;
+    color: white;
+    
+    &:hover {
+      background-color: #3182ce;
+    }
+  }
+  
+  &.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  &.btn-secondary {
+    background-color: #a0aec0;
+    color: white;
+    
+    &:hover {
+      background-color: #718096;
+    }
+  }
+}
+
+.issues-list {
+  margin-top: 1.5rem;
+  
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+}
+
+.issue-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.2s;
+  
+  &:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.issue-details {
+  margin-bottom: 1rem;
+  
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .issue-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    
+    .issue-id {
+      font-size: 0.875rem;
+      color: #718096;
+      margin-right: 0.75rem;
+    }
+    
+    .issue-state {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.125rem 0.5rem;
+      border-radius: 1rem;
+      
+      &.issue-state-opened {
+        background-color: rgba(76, 175, 80, 0.1);
+        color: #4caf50;
+      }
+      
+      &.issue-state-closed {
+        background-color: rgba(244, 67, 54, 0.1);
+        color: #f44336;
+      }
+    }
+  }
+  
+  .issue-description {
+    margin: 0;
+    color: #4a5568;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}
+
+.issue-actions {
+  .priority-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+    
+    .btn-priority {
+      text-align: center;
+      font-size: 0.8rem;
+      
+      &.priority-important-urgent {
+        background-color: #f56565;
+        color: white;
+        
+        &:hover {
+          background-color: #e53e3e;
+        }
+      }
+      
+      &.priority-important-not-urgent {
+        background-color: #ed8936;
+        color: white;
+        
+        &:hover {
+          background-color: #dd6b20;
+        }
+      }
+      
+      &.priority-not-important-urgent {
+        background-color: #4299e1;
+        color: white;
+        
+        &:hover {
+          background-color: #3182ce;
+        }
+      }
+      
+      &.priority-not-important-not-urgent {
+        background-color: #a0aec0;
+        color: white;
+        
+        &:hover {
+          background-color: #718096;
+        }
+      }
+    }
+  }
+}
+
+// 移动设备适配
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .issue-item {
+    padding: 0.75rem;
+  }
+  
+  .form-group {
+    input, select {
+      padding: 0.5rem;
+    }
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+  }
+} 

@@ -1,0 +1,173 @@
+.page-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.alert {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  
+  &.alert-error {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+    border-left: 4px solid #f44336;
+  }
+  
+  &.alert-success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+    border-left: 4px solid #4caf50;
+  }
+}
+
+.ai-config-card,
+.report-generator-card {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    
+    &:focus {
+      outline: none;
+      border-color: #4299e1;
+    }
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 6rem;
+  }
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  
+  &:hover {
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  &.btn-primary {
+    background-color: #4299e1;
+    color: white;
+    
+    &:hover {
+      background-color: #3182ce;
+    }
+  }
+  
+  &.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  &.btn-secondary {
+    background-color: #a0aec0;
+    color: white;
+    
+    &:hover {
+      background-color: #718096;
+    }
+  }
+}
+
+.report-result {
+  margin-top: 2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  
+  .report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: #f7fafc;
+    border-bottom: 1px solid #e2e8f0;
+    
+    h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+  
+  .report-content {
+    padding: 1.5rem;
+    line-height: 1.6;
+    
+    p {
+      margin: 0 0 0.75rem 0;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// 移动设备适配
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-group {
+    input, select, textarea {
+      padding: 0.5rem;
+    }
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+  }
+  
+  .report-result {
+    .report-header {
+      padding: 0.5rem 0.75rem;
+      
+      h3 {
+        font-size: 1rem;
+      }
+    }
+    
+    .report-content {
+      padding: 1rem;
+      font-size: 0.875rem;
+    }
+  }
+} 

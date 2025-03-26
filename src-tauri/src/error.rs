@@ -1,52 +1,74 @@
-use thiserror::Error;
+use std::fmt;
 use std::io;
 
-/// 应用程序错误类型
-#[derive(Error, Debug)]
-pub enum AppError {
-    #[error("数据库错误: {0}")]
-    Database(#[from] rusqlite::Error),
-
-    #[error("IO错误: {0}")]
-    Io(#[from] io::Error),
-
-    #[error("UUID错误: {0}")]
-    Uuid(#[from] uuid::Error),
-
-    #[error("系统时间错误: {0}")]
-    SystemTime(#[from] std::time::SystemTimeError),
-
-    #[error("Tauri错误: {0}")]
-    Tauri(String),
-
-    #[error("参数错误: {0}")]
-    InvalidArgument(String),
-
-    #[error("数据未找到: {0}")]
-    NotFound(String),
-
-    #[error("未知错误: {0}")]
-    Unknown(String),
-}
-
-/// Result类型别名，使用AppError作为错误类型
+/// 应用程序的结果类型
 pub type AppResult<T> = Result<T, AppError>;
 
-impl From<AppError> for String {
-    fn from(error: AppError) -> Self {
-        error.to_string()
+/// 应用程序错误类型
+#[derive(Debug)]
+pub enum AppError {
+    Io(io::Error),
+    Database(rusqlite::Error),
+    Json(serde_json::Error),
+    Tauri(String),
+    SystemTime(std::time::SystemTimeError),
+    Message(String),
+}
+
+impl std::error::Error for AppError {}
+
+impl fmt::Display for AppError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            AppError::Io(err) => write!(f, "IO错误: {}", err),
+            AppError::Database(err) => write!(f, "数据库错误: {}", err),
+            AppError::Json(err) => write!(f, "JSON错误: {}", err),
+            AppError::Tauri(err) => write!(f, "Tauri错误: {}", err),
+            AppError::SystemTime(err) => write!(f, "系统时间错误: {}", err),
+            AppError::Message(msg) => write!(f, "{}", msg),
+        }
     }
 }
 
-impl From<&str> for AppError {
-    fn from(message: &str) -> Self {
-        AppError::Unknown(message.to_string())
+impl From<io::Error> for AppError {
+    fn from(err: io::Error) -> Self {
+        AppError::Io(err)
+    }
+}
+
+impl From<rusqlite::Error> for AppError {
+    fn from(err: rusqlite::Error) -> Self {
+        AppError::Database(err)
+    }
+}
+
+impl From<serde_json::Error> for AppError {
+    fn from(err: serde_json::Error) -> Self {
+        AppError::Json(err)
+    }
+}
+
+impl From<std::time::SystemTimeError> for AppError {
+    fn from(err: std::time::SystemTimeError) -> Self {
+        AppError::SystemTime(err)
     }
 }
 
 impl From<String> for AppError {
-    fn from(message: String) -> Self {
-        AppError::Unknown(message)
+    fn from(msg: String) -> Self {
+        AppError::Message(msg)
+    }
+}
+
+impl From<&str> for AppError {
+    fn from(msg: &str) -> Self {
+        AppError::Message(msg.to_string())
+    }
+}
+
+impl From<AppError> for String {
+    fn from(err: AppError) -> Self {
+        err.to_string()
     }
 }
 

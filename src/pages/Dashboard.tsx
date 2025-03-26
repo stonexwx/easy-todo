@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FiHome, FiCalendar, FiSettings, FiList, FiActivity } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
@@ -16,6 +17,9 @@ import { TimePeriod } from '../components/TimePeriodTabs/types';
 import { TaskPriority } from '../components/QuadrantGrid/types';
 
 const Dashboard: React.FC = () => {
+  // 添加导航功能
+  const navigate = useNavigate();
+
   // 状态
   const [activeNavItem, setActiveNavItem] = useState('home');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -99,10 +103,26 @@ const Dashboard: React.FC = () => {
   // 处理导航变化
   const handleNavItemClick = (itemId: string) => {
     setActiveNavItem(itemId);
-    if (itemId === 'tauri') {
-      setShowTauriTodo(true);
-    } else {
-      setShowTauriTodo(false);
+
+    // 根据ID导航到相应页面
+    switch (itemId) {
+      case 'home':
+      case 'tasks':
+        setShowTauriTodo(false);
+        break;
+      case 'tauri':
+        setShowTauriTodo(true);
+        break;
+      case 'gitlab':
+        navigate('/gitlab');
+        break;
+      case 'ai':
+      case 'analytics':
+        navigate('/ai');
+        break;
+      case 'settings':
+        // 暂时不导航
+        break;
     }
   };
 
