@@ -1,0 +1,40 @@
+name: 依赖版本检查
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # 每周日运行
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  rust-check:
+    name: 检查Rust依赖
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 安装Rust
+        uses: dtolnay/rust-toolchain@stable
+      
+      - name: 安装cargo-outdated
+        run: cargo install cargo-outdated
+      
+      - name: 检查Rust依赖更新
+        working-directory: ./src-tauri
+        run: cargo outdated
+  
+  npm-check:
+    name: 检查NPM依赖
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 设置Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: 安装npm-check-updates
+        run: npm install -g npm-check-updates
+      
+      - name: 检查NPM依赖更新
+        run: ncu 

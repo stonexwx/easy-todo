@@ -1,6 +1,81 @@
 # Easy Todo
 
-一个简单高效的待办事项管理应用，使用 React + Vite + TypeScript 构建。
+一个使用Tauri 2.0、Rust和React构建的跨平台Todo应用程序。
+
+## 功能特性
+
+- 支持优先级矩阵管理任务
+- 从GitLab同步任务
+- 自动生成工作报告
+- 跨平台支持（Windows、macOS、Linux）
+
+## 开发指南
+
+### 前提条件
+
+- Node.js (v18+)
+- Rust (1.71+)
+- Tauri CLI
+
+### 安装依赖
+
+```bash
+# 安装前端依赖
+npm install
+
+# 安装Tauri CLI
+cargo install tauri-cli
+```
+
+### 开发
+
+```bash
+# 启动开发服务器
+npm run dev
+```
+
+### 构建
+
+```bash
+# 构建应用
+npm run build
+```
+
+## 自动化测试
+
+项目使用GitHub Actions进行自动化测试和构建。工作流配置位于`.github/workflows/`目录。
+
+### 工作流说明
+
+1. **Rust Tests** - 后端代码测试
+   - 运行单元测试
+   - 执行代码分析
+   - 检查代码格式
+
+2. **Build Check** - 跨平台构建测试
+   - 在Windows、macOS和Linux上测试构建
+   - 测试前端和后端的集成
+
+3. **依赖版本检查** - 定期检查依赖更新
+   - 每周自动检查Rust和NPM依赖的更新
+   - 可以手动触发检查
+
+4. **发布应用** - 自动化发布流程
+   - 标记新版本时自动构建
+   - 为所有支持的平台创建发布包
+
+### 手动触发工作流
+
+可以通过GitHub界面手动触发某些工作流：
+
+1. 进入项目的GitHub页面
+2. 点击"Actions"选项卡
+3. 从左侧列表选择要运行的工作流
+4. 点击"Run workflow"按钮
+
+## 许可证
+
+[MIT](LICENSE)
 
 ## 技术栈
 
