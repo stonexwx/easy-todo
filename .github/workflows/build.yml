@@ -46,7 +46,7 @@ jobs:
         run: yarn install
       
       - name: 前端代码构建
-        run: yarn build
+        run: yarn build:ci
       
       - name: 编译Tauri应用
         uses: tauri-apps/tauri-action@v0
